@@ -1,6 +1,7 @@
 ﻿using LanchoneteSite.Models;
 using LanchoneteSite.Repositories.Interfaces;
 using LanchoneteSite.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LanchoneteSite.Controllers
@@ -32,6 +33,7 @@ namespace LanchoneteSite.Controllers
             return View(carrinhoCompraVM);
         }
 
+        [Authorize]
         public IActionResult AdicionarNoCarrinhoCompra(int lancheId)
         {
             var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p =>
@@ -43,6 +45,7 @@ namespace LanchoneteSite.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult RemoverItemDoCarrinhoCompra(int lancheId)
         {
             var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p =>
