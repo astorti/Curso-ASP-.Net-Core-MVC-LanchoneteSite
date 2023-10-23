@@ -1,10 +1,12 @@
-﻿using LanchoneteSite.Context;
+﻿using LanchoneteSite.Areas.Admin.Services;
+using LanchoneteSite.Context;
 using LanchoneteSite.Models;
 using LanchoneteSite.Repositories;
 using LanchoneteSite.Repositories.Interfaces;
 using LanchoneteSite.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace LanchoneteSite
 {
@@ -32,6 +34,7 @@ namespace LanchoneteSite
             services.AddTransient<IPedidoRepository, PedidoRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
+            services.AddScoped<RelatorioVendasService>();
 
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
             services.AddAuthorization(options =>
@@ -44,6 +47,12 @@ namespace LanchoneteSite
             });
 
             services.AddControllersWithViews();
+
+            services.AddPaging(options =>
+            {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+            });
 
             services.AddMemoryCache();
             services.AddSession();
