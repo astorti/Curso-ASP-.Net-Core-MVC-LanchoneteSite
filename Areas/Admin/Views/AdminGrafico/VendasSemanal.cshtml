@@ -27,7 +27,7 @@
         });
         return false;
     }
-    
+    //preparar os dados obtidos
     function GraficoVendasLanches(data) {
         var dataArray = [
             ['Lanche', 'Quantidade', 'Valores(R$)']
@@ -63,7 +63,6 @@
                 title: 'Valor Total (em Reais)'
             }
         };
-
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
     }
