@@ -37,6 +37,7 @@ namespace LanchoneteSite
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
             services.AddScoped<RelatorioVendasService>();
+            services.AddScoped<GraficoVendasService>();
 
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
             services.AddAuthorization(options =>
